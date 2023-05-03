@@ -26,8 +26,8 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { v4 as uuidv4 } from "uuid";
 import { Icon } from "@iconify/vue";
+import { v4 as uuidv4 } from "uuid";
 import TodoInput from "../components/TodoInput.vue";
 import TodoList from "../components/TodoList.vue";
 import { Todo } from "../types/types";

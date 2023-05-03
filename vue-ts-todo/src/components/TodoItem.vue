@@ -12,7 +12,9 @@
         type="text"
         ref="editInput"
         :value="todo.todo"
-        @input="updateTodo"
+        @input="
+          $emit('update-todo', ($event.target as HTMLInputElement).value, index)
+        "
         @blur="$emit('edit-todo', index)"
         @keydown.enter="$emit('edit-todo', index)"
       />
@@ -78,19 +80,14 @@ defineProps({
 
 const editInput = ref<HTMLInputElement | null>(null);
 
-const emit = defineEmits([
-  "edit-todo",
-  "update-todo",
-  "toggle-complete",
-  "delete-todo",
-]);
+defineEmits(["edit-todo", "update-todo", "toggle-complete", "delete-todo"]);
 
-const updateTodo = (e: Event) => {
-  const target = e.target as HTMLInputElement;
-  const value = target.value;
-  const index = target.dataset.index;
-  emit("update-todo", value, index);
-};
+// const updateTodo = (e: Event) => {
+//   const target = e.target as HTMLInputElement;
+//   const value = target.value;
+//   const index = target.dataset.index;
+//   emit("update-todo", value, index);
+// };
 </script>
 
 <style lang="scss" scoped>
