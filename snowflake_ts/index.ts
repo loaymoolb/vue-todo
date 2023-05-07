@@ -19,26 +19,21 @@
 // Space Complexity: O(n * m)
 
 function hasDuplicateSnowflakes(arr: number[][]): boolean {
-  const map = new Map<string, boolean>();
+  const set = new Set<string>();
   for (let i = 0; i < arr.length; i++) {
     const tuple: number[] = arr[i];
-    const variations: number[][] = [];
     for (let j = 0; j < tuple.length; j++) {
       tuple.unshift(tuple.pop()!);
-      variations.push([...tuple]);
-    }
-    for (let k = 0; k < variations.length; k++) {
-      const variation = variations[k];
-      const variationKey = variation.join(",");
-      if (map.has(variationKey)) {
+      const variationKey = tuple.join(",");
+      if (set.has(variationKey)) {
         return true;
       }
-      map.set(variationKey, true);
-      const reversedVariationKey = [...variation].reverse().join(",");
-      if (map.has(reversedVariationKey)) {
+      set.add(variationKey);
+      const reversedVariationKey = [...tuple].reverse().join(",");
+      if (set.has(reversedVariationKey)) {
         return true;
       }
-      map.set(reversedVariationKey, true);
+      set.add(reversedVariationKey);
     }
   }
   return false;
