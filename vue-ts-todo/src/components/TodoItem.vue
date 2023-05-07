@@ -15,8 +15,8 @@
         @input="
           $emit('update-todo', ($event.target as HTMLInputElement).value, index)
         "
-        @blur="$emit('edit-todo', index)"
         @keydown.enter="$emit('edit-todo', index)"
+        @blur="$emit('edit-todo', index)"
       />
       <span
         v-else
@@ -67,27 +67,16 @@ import { ref } from "vue";
 import { Icon } from "@iconify/vue";
 import { Todo } from "../types/types";
 
-defineProps({
-  todo: {
-    type: Object as () => Todo,
-    default: () => ({} as Todo),
-  },
-  index: {
-    type: Number,
-    default: 0,
-  },
-});
+interface Props {
+  todo: Todo;
+  index: number;
+}
+
+defineProps<Props>();
 
 const editInput = ref<HTMLInputElement | null>(null);
 
 defineEmits(["edit-todo", "update-todo", "toggle-complete", "delete-todo"]);
-
-// const updateTodo = (e: Event) => {
-//   const target = e.target as HTMLInputElement;
-//   const value = target.value;
-//   const index = target.dataset.index;
-//   emit("update-todo", value, index);
-// };
 </script>
 
 <style lang="scss" scoped>

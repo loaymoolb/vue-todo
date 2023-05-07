@@ -24,33 +24,18 @@
 <script setup lang="ts">
 import draggable from "vuedraggable";
 import TodoItem from "../components/TodoItem.vue";
+import { Todo } from "../types/types";
 
-defineProps({
-  todoList: {
-    type: Array as any,
-    required: true,
-  },
-  dragTodo: {
-    type: Function as any,
-    required: true,
-  },
-  toggleEditTodo: {
-    type: Function as any,
-    required: true,
-  },
-  updateTodo: {
-    type: Function as any,
-    required: true,
-  },
-  toggleTodoComplete: {
-    type: Function as any,
-    required: true,
-  },
-  deleteTodo: {
-    type: Function as any,
-    required: true,
-  },
-});
+interface Props {
+  todoList: Todo[];
+  dragTodo: () => void;
+  toggleEditTodo: (index: number) => void;
+  updateTodo: (todo: string, index: number) => void;
+  toggleTodoComplete: (index: number) => void;
+  deleteTodo: (todo: { id: string }) => void;
+}
+
+defineProps<Props>();
 </script>
 
 <style lang="scss" scoped>
