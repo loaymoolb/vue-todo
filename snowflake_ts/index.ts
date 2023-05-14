@@ -14,7 +14,7 @@
 // [(1,2,3,4,5,6), (1,2,3,4,6,5), (3,4,5,6,7,8)] => nie
 // TypeScript
 
-// Using a Map
+// Using a Set
 // Time Complexity: O(n * m)
 // Space Complexity: O(n * m)
 
